@@ -3,10 +3,16 @@
 Tokobarang adalah aplikasi berbasis web yang dibangun dengan PHP untuk mengelola transaksi dan produk di toko online. Aplikasi ini memungkinkan pengguna untuk menambahkan, melihat, dan mengelola transaksi serta produk dengan fitur pencarian dan filter berdasarkan kode transaksi atau nama pelanggan. Juga dilengkapi dengan fitur untuk menghasilkan laporan penjualan.
 
 ## Fitur
-- **Tambah dan Edit Transaksi**
-- **Cari dan Filter Transaksi berdasarkan Kode atau Nama Pelanggan**
-- **Lihat Detail Transaksi**
+- **Login dan Register Pengguna** 
+- **CRUD Barang** (Tambah, Edit, Hapus, Lihat)
+  - Cari berdasarkan Kode atau Nama Barang
+  - Filter berdasarkan Kategori
+- **CRUD Pelanggan** (Tambah, Edit, Hapus, Lihat)
+- **CRUD Transaksi** (Tambah, Edit, Hapus, Lihat)
+  - Cari berdasarkan Kode atau Nama Pelanggan
+  - Filter berdasarkan Periode Bulan
 - **Hasilkan Laporan Penjualan**
+
 
 ## Instalasi
 1. Clone repository:
