@@ -1,10 +1,10 @@
 <?php
+
 include_once('../models/TransaksiModel.php');
 
 class TransaksiController
 {
     private $model;
-
     public function __construct()
     {
         $this->model = new TransaksiModel();
@@ -18,15 +18,6 @@ class TransaksiController
     public function getTransaksi($id)
     {
         return $this->model->getTransaksi($id);
-    }
-
-    public function Show($id)
-    {
-        $rows = $this->model->getTransaksi($id);
-        foreach($rows as $row){
-            $val = $row['nama'];
-        }
-        return $val;
     }
 
     public function updateTransaksi($id, $kode_transaksi, $kode_pelanggan, $tanggal_transaksi)
@@ -44,13 +35,15 @@ class TransaksiController
         return $this->model->deleteTransaksi($id);
     }
 
-    public function getTransaksiList()
+    public function getTransaksiList($search = '', $bulan = '', $tahun = '')
     {
-        return $this->model->getTransaksiList();
+    return $this->model->getTransaksiList($search, $bulan, $tahun);
     }
-    
+
+
     public function getDataCombo()
     {
         return $this->model->getDataCombo();
     }
 }
+?>

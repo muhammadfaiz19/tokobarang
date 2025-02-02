@@ -17,7 +17,10 @@ class Database {
         
         $this->connect($host, $dbname, $username, $password, $charset);
     }
-
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
     private function connect($host, $dbname, $username, $password, $charset) {
         try {
             $this->pdo = new PDO("mysql:host={$host};dbname={$dbname};charset={$charset}", $username, $password);
