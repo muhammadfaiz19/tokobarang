@@ -55,12 +55,12 @@ getHeader($theme);
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>id</th>
-            <th>kode_barang</th>
-            <th>nama_barang</th>
-            <th>kategori</th>
-            <th>harga</th>
-            <th>stok</th>
+            <th>ID</th>
+            <th>Kode Barang</th>
+            <th>Nama Barang</th>
+            <th>Kategori</th>
+            <th>Harga</th>
+            <th>Stok</th>
             <th width="140">Action</th>
         </tr>
     </thead>

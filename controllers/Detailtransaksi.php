@@ -36,11 +36,15 @@ class DetailtransaksiController
         return $this->model->updateDetailtransaksi($id, $transaksi_id, $kode_barang);
     }
 
-    public function deleteDetailtransaksi($id)
+    public function deleteDetailtransaksi($id, $transaksi_id)
     {
-        // Delete detail transaksi and return response (could be success or failure)
-        $response = $this->model->deleteDetailtransaksi($id);
-        return json_decode($response, true);  // Decode JSON response for handling
+        // Hapus detail transaksi
+        $response = $this->model->deleteDetailtransaksi($id, $transaksi_id);
+
+        // Perbarui total harga setelah penghapusan
+        $this->model->updateTotalHarga($transaksi_id);
+
+        return json_decode($response, true);
     }
 
     public function getDetailtransaksiList($id)
@@ -67,6 +71,16 @@ class DetailtransaksiController
     public function isValidTransaksi($id)
     {
         return $this->model->isValidTransaksi($id);
+    }
+
+    public function updateTotalHarga($transaksi_id)
+    {
+        return $this->model->updateTotalHarga($transaksi_id);
+    }
+
+    public function getTotalHarga($id)
+    {
+        return $this->model->getTotalHarga($id);
     }
 }
 ?>

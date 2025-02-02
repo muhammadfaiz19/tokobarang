@@ -31,13 +31,13 @@ if($msg===true){
 ?>
         <div class="header icon-and-heading fs-1">
         <i class="zmdi zmdi-view-dashboard zmdi-hc-4x"></i>
-            <h2><strong>pelanggan</strong> <small>Add New Data</small> </h2>
+            <h2><strong>Pelanggan</strong> <small>Add New Data</small> </h2>
         </div>
         <hr/>
         <form name="formAdd" method="POST" action="">
             
                 <div class="form-group">
-                    <label>Kode_pelanggan:</label>
+                    <label>Kode Pelanggan:</label>
                     <input type="text" class="form-control" name="kode_pelanggan"  />
                 </div>
             
@@ -47,7 +47,7 @@ if($msg===true){
                 </div>
             
                 <div class="form-group">
-                    <label>jk:</label>
+                    <label>Jenis Kelamin:</label>
                     <select id="jk" name="jk" style="width:150px" class="form-control">
                         <option value="">--pilih--</option>
                         <option value="L">L</option><option value="P">P</option>
@@ -60,7 +60,7 @@ if($msg===true){
                 </div>
             
                 <div class="form-group">
-                    <label>Telepon:</label>
+                    <label>No.Telepon:</label>
                     <input type="text" class="form-control" name="telepon"  />
                 </div>
             

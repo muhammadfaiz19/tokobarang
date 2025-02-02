@@ -53,4 +53,14 @@ class BarangController
     {
         return $this->model->getCategories();
     }
+
+    public function getBarangByKode($kode_barang)
+    {
+        return $this->model->getBarangByKode($kode_barang);
+    }
+
+    public function kurangiStokBarang($kode_barang, $jumlah)
+    { 
+        return $this->model->kurangiStokBarang($kode_barang, $jumlah);
+    }
 }

@@ -36,7 +36,7 @@ getHeader($theme);
     ?>
     <div class="header icon-and-heading">
     <i class="zmdi zmdi-view-dashboard zmdi-hc-4x custom-icon"></i>
-    <h2><strong>pelanggan</strong> <small>Delete Data</small> </h2>
+    <h2><strong>Pelanggan</strong> <small>Delete Data</small> </h2>
     </div>
     <hr/>
     <form name="formDelete" method="POST" action="">
@@ -45,18 +45,18 @@ getHeader($theme);
         <?php foreach ($rows as $row): ?>
         
         
-                            <dt class="col-sm-3">Id:</dt><dd class="col-sm-9"><?php echo $row['id']; ?></dd>
+                            <dt class="col-sm-3">ID:</dt><dd class="col-sm-9"><?php echo $row['id']; ?></dd>
                             <input type="hidden" class="form-control" name="id" value="<?php echo $row['id']; ?>" readonly />
             
-                            <dt class="col-sm-3">Kode_pelanggan:</dt><dd class="col-sm-9"><?php echo $row['kode_pelanggan']; ?></dd>
+                            <dt class="col-sm-3">Kode Pelanggan:</dt><dd class="col-sm-9"><?php echo $row['kode_pelanggan']; ?></dd>
             
                             <dt class="col-sm-3">Nama:</dt><dd class="col-sm-9"><?php echo $row['nama']; ?></dd>
             
-                            <dt class="col-sm-3">Jk:</dt><dd class="col-sm-9"><?php echo $row['jk']; ?></dd>
+                            <dt class="col-sm-3">Jenis Kelamin:</dt><dd class="col-sm-9"><?php echo $row['jk']; ?></dd>
             
                             <dt class="col-sm-3">Email:</dt><dd class="col-sm-9"><?php echo $row['email']; ?></dd>
             
-                            <dt class="col-sm-3">Telepon:</dt><dd class="col-sm-9"><?php echo $row['telepon']; ?></dd>
+                            <dt class="col-sm-3">No.Telepon:</dt><dd class="col-sm-9"><?php echo $row['telepon']; ?></dd>
             
             
         </dl>

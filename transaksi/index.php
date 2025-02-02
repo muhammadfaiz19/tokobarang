@@ -81,17 +81,17 @@ getHeader($theme);
             <?php 
                 foreach ($rows as $row):
                     $dibeli = $detail->countDetailtransaksi($row['id']);
-                    $total_harga = $row['total_harga'] ?? 0;
+                    $total_harga = $detail->getTotalHarga($row['id']); // Ambil langsung dari detail transaksi
             ?>
-            <tr>
-                <td><?php echo $row["id"]; ?></td>
-                <td><?php echo $row["kode_transaksi"]; ?></td>
-                <td><?php echo $row["kode_pelanggan"]; ?></td>
-                <td><?php echo $row["nama"]; ?></td>
-                <td><?php echo $row["tanggal_transaksi"]; ?></td>
-                <td><?php echo $dibeli; ?></td>
-                <td><?php echo number_format($total_harga, 0, ',', '.'); ?></td>
-                <td class="text-center">
+                <tr>
+                    <td><?php echo htmlspecialchars($row["id"]); ?></td>
+                    <td><?php echo htmlspecialchars($row["kode_transaksi"]); ?></td>
+                    <td><?php echo htmlspecialchars($row["kode_pelanggan"]); ?></td>
+                    <td><?php echo htmlspecialchars($row["nama"]); ?></td>
+                    <td><?php echo htmlspecialchars($row["tanggal_transaksi"]); ?></td>
+                    <td><?php echo htmlspecialchars($dibeli); ?></td>
+                    <td><?php echo number_format($total_harga, 0, ',', '.'); ?></td>
+                    <td class="text-center">
                     <?php if ($row["dibeli"] == 0): ?>
                         <a class="btn btn-warning btn-sm" href="edit.php?id=<?= $row['id']; ?>" data-toggle="tooltip" title="Edit">
                             <i class="fa fa-pencil"></i>
@@ -113,11 +113,9 @@ getHeader($theme);
                         <a class="btn btn-info btn-sm" href="detail.php?id=<?= $row['id']; ?>" data-toggle="tooltip" title="View Only">
                             <i class="fa fa-eye"></i>
                         </a>
-                        <a class="btn btn-danger btn-sm" href="delete.php?id=<?= $row['id']; ?>" data-toggle="tooltip" title="Delete">
-                            <i class="fa fa-trash"></i>
-                        </a>
                     <?php endif; ?>
                 </td>
+
             </tr>
             <?php endforeach; ?>
         </tbody>

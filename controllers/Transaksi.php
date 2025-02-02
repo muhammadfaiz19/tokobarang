@@ -5,6 +5,7 @@ include_once('../models/TransaksiModel.php');
 class TransaksiController
 {
     private $model;
+
     public function __construct()
     {
         $this->model = new TransaksiModel();
@@ -37,13 +38,16 @@ class TransaksiController
 
     public function getTransaksiList($search = '', $bulan = '', $tahun = '')
     {
-    return $this->model->getTransaksiList($search, $bulan, $tahun);
+        return $this->model->getTransaksiList($search, $bulan, $tahun);
     }
-
 
     public function getDataCombo()
     {
         return $this->model->getDataCombo();
     }
+
+  
 }
+
+// Perbaikan: Menambahkan penutupan class TransaksiController
 ?>

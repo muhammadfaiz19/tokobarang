@@ -119,4 +119,27 @@ class BarangModel
         header('Content-Type: application/json');
         echo json_encode($data);
     }
+
+    public function getBarangByKode($kode_barang) {
+        $sql = "SELECT * FROM barang WHERE kode_barang = :kode_barang";  // Use named placeholder
+        $stmt = $this->db->getPdo()->prepare($sql);
+        $stmt->bindParam(":kode_barang", $kode_barang, PDO::PARAM_STR);  // Bind the parameter
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    
+    public function kurangiStokBarang($kode_barang, $jumlah) {
+        $sql = "UPDATE barang SET stok = stok - :jumlah WHERE kode_barang = :kode_barang AND stok >= :jumlah";
+        
+        $stmt = $this->db->getPdo()->prepare($sql);
+        $stmt->bindParam(":kode_barang", $kode_barang, PDO::PARAM_STR);
+        $stmt->bindParam(":jumlah", $jumlah, PDO::PARAM_INT);
+    
+        return $stmt->execute();
+    }
+    
+
+    
+    
 }

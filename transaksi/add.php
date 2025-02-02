@@ -34,18 +34,18 @@ if($msg===true){
 ?>
         <div class="header icon-and-heading fs-1">
         <i class="zmdi zmdi-view-dashboard zmdi-hc-4x"></i>
-            <h2><strong>transaksi</strong> <small>Add New Data</small> </h2>
+            <h2><strong>Transaksi</strong> <small>Add New Data</small> </h2>
         </div>
         <hr/>
         <form name="formAdd" method="POST" action="">
             
                 <div class="form-group">
-                    <label>Kode_transaksi:</label>
+                    <label>Kode Transaksi:</label>
                     <input type="text" class="form-control" name="kode_transaksi" value="<?php echo $kode_transaksi; ?>" readonly="readonly"/>
                 </div>
             
                 <div class="form-group">
-                    <label>Kode_pelanggan:</label>
+                    <label>Kode Pelanggan:</label>
                     <select class="form-control" name="kode_pelanggan" id="kode_pelanggan">
                         <option value="">Pilih Pelanggan...</option>
                         <?php foreach($list as $ang): ?>
@@ -57,7 +57,7 @@ if($msg===true){
                 </div>
             
                 <div class="form-group">
-                    <label>Tanggal_transaksi:</label>
+                    <label>Tanggal Transaksi:</label>
                     <input type="date" class="form-control" name="tanggal_transaksi"  />
                 </div>
             

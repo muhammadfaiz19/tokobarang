@@ -36,7 +36,7 @@ getHeader($theme);
     ?>
     <div class="header icon-and-heading">
     <i class="zmdi zmdi-view-dashboard zmdi-hc-4x custom-icon"></i>
-    <h2><strong>barang</strong> <small>Delete Data</small> </h2>
+    <h2><strong>Barang</strong> <small>Delete Data</small> </h2>
     </div>
     <hr/>
     <form name="formDelete" method="POST" action="">
@@ -64,7 +64,6 @@ getHeader($theme);
         <a href="#index" class="btn btn-large btn-default">Cancel</a>
         <?php endforeach; ?>
     </form>
-                                       
 <?php
 getFooter($theme,"");
 ?>

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../vendor/autoload.php"; // add this library using: composer require vlucas/phpdotenv
+require_once __DIR__ . "/../vendor/autoload.php"; 
 
 class Database {
     private $pdo;

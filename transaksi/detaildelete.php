@@ -1,8 +1,10 @@
 <?php
-include("../controllers/DetailTransaksi.php");
+include("../controllers/Detailtransaksi.php");
+include("../controllers/Transaksi.php"); // Pastikan controller transaksi dimuat
 include("../lib/functions.php");
 
 $obj = new DetailTransaksiController();
+$transaksiController = new TransaksiController(); // Buat objek untuk update total harga
 
 // Ambil ID dari parameter URL
 $id = isset($_GET["id"]) ? intval($_GET["id"]) : 0;
@@ -14,13 +16,25 @@ if ($id <= 0 || $iddetail <= 0) {
 
 $msg = null;
 
-// Proses penghapusan data
-if (isset($_POST['submitted']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $iddetail = $_POST['iddetail'];
-    $id = $_POST['id'];
+// Proses penghapusan data HARUS menggunakan POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id_detail = intval($_POST["iddetail"]);
+    $transaksi_id = intval($_POST["id"]);
 
-    $result = $obj->deleteDetailTransaksi($iddetail);  // Menggunakan $obj, bukan $detailController
-    $msg = getJSON($result);  // Pastikan getJSON() sudah didefinisikan di functions.php
+    // Eksekusi penghapusan
+    $result = $obj->deleteDetailtransaksi($id_detail, $transaksi_id);
+
+    if ($result["success"]) {
+        // Perbarui total harga setelah penghapusan
+        $obj->updateTotalHarga($transaksi_id);
+        $msg = true;
+    } else {
+        $msg = false;
+    }
+
+    // Redirect setelah proses selesai
+    header("Location: detail.php?id=" . htmlspecialchars($transaksi_id));
+    exit();
 }
 
 // Ambil detail transaksi sebelum dihapus
@@ -33,10 +47,10 @@ getHeader($theme);
 
 <?php 
 if ($msg === true) { 
-    echo '<div class="alert alert-success" style="display: block" id="message_success">Delete Data Berhasil</div>';
-    echo '<meta http-equiv="refresh" content="3;url=' . base_url() . 'transaksi/detail.php?id=' . $id . '">';
+    echo '<div class="alert alert-success" id="message_success">Delete Data Berhasil</div>';
+    echo '<meta http-equiv="refresh" content="3;url=' . base_url() . 'transaksi/detail.php?id=' . htmlspecialchars($id) . '">';
 } elseif ($msg === false) {
-    echo '<div class="alert alert-danger" style="display: block" id="message_error">Delete Gagal</div>'; 
+    echo '<div class="alert alert-danger" id="message_error">Delete Gagal</div>'; 
 }
 ?>
 
@@ -46,26 +60,21 @@ if ($msg === true) {
 </div>
 <hr/>
 <form name="formDelete" method="POST" action="">
-    <input type="hidden" class="form-control" name="submitted" value="1"/>
+    <input type="hidden" name="submitted" value="1"/>
     <dl class="row mt-1">
     <?php 
-        // Pastikan rows tidak kosong sebelum iterasi
         if (!empty($rows)): 
             foreach ($rows as $row): 
     ?>
-        <dt class="col-sm-3">Id:</dt><dd class="col-sm-9"><?php echo htmlspecialchars($row['id']); ?></dd>
-        <input type="hidden" class="form-control" name="iddetail" value="<?php echo htmlspecialchars($row['id']); ?>" readonly />
-        <input type="hidden" class="form-control" name="id" value="<?php echo htmlspecialchars($id); ?>" readonly />
+        <dt class="col-sm-3">Id:</dt><dd class="col-sm-9"><?= htmlspecialchars($row['id']); ?></dd>
+        <input type="hidden" name="iddetail" value="<?= htmlspecialchars($row['id']); ?>" />
+        <input type="hidden" name="id" value="<?= htmlspecialchars($id); ?>" />
 
-        <dt class="col-sm-3">Kode Penjualan:</dt><dd class="col-sm-9"><?php echo isset($row['transaksi_id']) ? htmlspecialchars($row['transaksi_id']) : 'Tidak ada data'; ?></dd>
-
-        <dt class="col-sm-3">Kode Barang:</dt><dd class="col-sm-9"><?php echo isset($row['kode_barang']) ? htmlspecialchars($row['kode_barang']) : 'Tidak ada data'; ?></dd>
-
-        <dt class="col-sm-3">Nama Barang:</dt><dd class="col-sm-9"><?php echo isset($row['nama_barang']) ? htmlspecialchars($row['nama_barang']) : 'Tidak ada data'; ?></dd>
-
-        <dt class="col-sm-3">Kategori:</dt><dd class="col-sm-9"><?php echo isset($row['kategori']) ? htmlspecialchars($row['kategori']) : 'Tidak ada data'; ?></dd>
-
-        <dt class="col-sm-3">Harga:</dt><dd class="col-sm-9"><?php echo isset($row['harga']) ? htmlspecialchars($row['harga']) : 'Tidak ada data'; ?></dd>
+        <dt class="col-sm-3">Kode Penjualan:</dt><dd class="col-sm-9"><?= htmlspecialchars($row['transaksi_id'] ?? 'Tidak ada data'); ?></dd>
+        <dt class="col-sm-3">Kode Barang:</dt><dd class="col-sm-9"><?= htmlspecialchars($row['kode_barang'] ?? 'Tidak ada data'); ?></dd>
+        <dt class="col-sm-3">Nama Barang:</dt><dd class="col-sm-9"><?= htmlspecialchars($row['nama_barang'] ?? 'Tidak ada data'); ?></dd>
+        <dt class="col-sm-3">Kategori:</dt><dd class="col-sm-9"><?= htmlspecialchars($row['kategori'] ?? 'Tidak ada data'); ?></dd>
+        <dt class="col-sm-3">Harga:</dt><dd class="col-sm-9"><?= htmlspecialchars($row['harga'] ?? 'Tidak ada data'); ?></dd>
 
     <?php 
             endforeach; 

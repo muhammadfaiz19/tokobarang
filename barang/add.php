@@ -31,7 +31,7 @@ if($msg===true){
 ?>
         <div class="header icon-and-heading fs-1">
         <i class="zmdi zmdi-view-dashboard zmdi-hc-4x"></i>
-            <h2><strong>barang</strong> <small>Add New Data</small> </h2>
+            <h2><strong>Barang</strong> <small>Add New Data</small> </h2>
         </div>
         <hr/>
         <form name="formAdd" method="POST" action="">

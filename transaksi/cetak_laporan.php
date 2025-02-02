@@ -60,7 +60,7 @@ $html = '
 
 foreach ($rows as $row) {
     $dibeli = $detail->countDetailtransaksi($row['id']);
-    $total_harga = $row['total_harga'] ?? 0; // Total harga, jika tidak ada, default 0
+    $total_harga = $detail->getTotalHarga($row['id']); // Total harga, jika tidak ada, default 0
 
     $html .= "
         <tr>

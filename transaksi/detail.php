@@ -11,9 +11,9 @@ if (isset($_GET["id"])) {
 }
 $msg = null;
 
-if (isset($_POST["submitted"])==1 && $_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST["submitted"]) == 1 && $_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
-    $status = true;
+    $status = 2; // Status 2 = transaksi selesai (checkout)
     
     $dat = $transaksi->updateStatus($id, $status);
     $msg = getJSON($dat);
@@ -26,13 +26,14 @@ $totalItems = $obj->countDetailTransaksi($id);
 $theme = setTheme();
 getHeader($theme);
 ?>
+
 <?php 
-    if($msg===true){ 
+    if($msg === true){ 
         echo '<div class="alert alert-success" style="display: block" id="message_success">Update Data Berhasil</div>';
         echo '<meta http-equiv="refresh" content="2;url='.base_url().'transaksi/detail.php?id='.$id.'">';
-    } elseif($msg===false) {
+    } elseif($msg === false) {
         echo '<div class="alert alert-danger" style="display: block" id="message_error">Update Gagal</div>'; 
-    } else {}
+    }
 ?>
 
 <div class="header icon-and-heading">
@@ -42,7 +43,7 @@ getHeader($theme);
 
 <dl class="row mt-3">
     <?php foreach ($transaksiData as $transaksi): ?>
-        <dt class="col-sm-3" style="margin-left:50px">Id:</dt>
+        <dt class="col-sm-3" style="margin-left:50px">ID:</dt>
         <dd class="col-sm-7" style="margin-left:-150px"><?php echo $transaksi['id']; ?></dd>
 
         <dt class="col-sm-3" style="margin-left:50px">Kode Transaksi:</dt>
@@ -58,12 +59,14 @@ getHeader($theme);
         <dd class="col-sm-7" style="margin-left:-150px"><?php echo $totalItems; ?></dd>
 
         <dt class="col-sm-3" style="margin-left:50px">Total Harga:</dt>
-        <dd class="col-sm-7" style="margin-left:-150px"><?php echo $transaksi['total_harga']; ?></dd>
+        <dd class="col-sm-7" style="margin-left:-150px"><?php echo number_format($transaksi['total_harga'], 2, ',', '.'); ?></dd>
+    <?php endforeach; ?>
 </dl>
-<?php endforeach; ?>
+
 <hr style="margin-bottom:-2px;"/>
+
 <?php
-if($transaksi['dibeli']==0){
+if($transaksi['dibeli'] == 0){
     echo '<a style="margin:10px 0px;" class="btn btn-large btn-info" href="detailadd.php?id='.$id.'"><i class="fa fa-plus"></i> Tambah Data</a>';
 }
 ?>
@@ -76,7 +79,9 @@ if($transaksi['dibeli']==0){
             <th>Nama Barang</th>
             <th>Kategori</th>
             <th>Harga</th>
-            <th>Action</th>
+            <?php if ($transaksi['dibeli'] == 0): ?>
+                <th>Action</th>
+            <?php endif; ?>
         </tr>
     </thead>
     <tbody>
@@ -88,13 +93,14 @@ if($transaksi['dibeli']==0){
                     <td><?php echo $barang['kode_barang']; ?></td>
                     <td><?php echo $barang['nama_barang']; ?></td>
                     <td><?php echo $barang['kategori']; ?></td>
-                    <td><?php echo $barang['harga']; ?></td>
-                    <td class="text-center">
-                       
-                        <a class="btn btn-danger btn-sm" href="detaildelete.php?id=<?php echo $id; ?>&iddetail=<?php echo $barang['id']; ?>">
-                            <i class="fa fa-trash"></i> Hapus
-                        </a>
-                    </td>
+                    <td><?php echo number_format($barang['harga'], 2, ',', '.'); ?></td>
+                    <?php if ($transaksi['dibeli'] == 0): ?>
+                        <td class="text-center">
+                            <a class="btn btn-danger btn-sm" href="detaildelete.php?id=<?php echo $id; ?>&iddetail=<?php echo $barang['id']; ?>">
+                                <i class="fa fa-trash"></i> Hapus
+                            </a>
+                        </td>
+                    <?php endif; ?>
                 </tr>
                 <?php $i++; ?>
             <?php endforeach; ?>
@@ -109,21 +115,12 @@ if($transaksi['dibeli']==0){
     <input type="hidden" class="form-control" name="submitted" value="1"/>
     <input type="hidden" class="form-control" name="id" value="<?php echo $id; ?>"/>
     <div class="d-flex justify-content-end mt-3">
-    <?php
-        if($transaksi['dibeli']==0){
-            echo '<button class="save btn btn-large btn-success" type="submit"><i class="fa fa-handshake"></i> Submit</button>';
+        <?php
+        if($transaksi['dibeli'] == 0){
+            echo '<button class="save btn btn-large btn-success" type="submit"><i class="fa fa-handshake"></i> Checkout</button>';
         }
-    ?>
-</div>     
-</form>
-<form name="formDibeli" method="POST" action="">
-    <input type="hidden" class="form-control" name="beli" value="1"/>
-    <input type="hidden" class="form-control" name="id" value="<?php echo $id; ?>"/>
-    <?php
-        if($transaksi['dibeli']==1 && $transaksi['dibeli']==0){
-            echo '<button class="save btn btn-large btn-warning" type="submit"><i class="fa fa-calendar-check"></i> Checkout</button>';
-        }
-    ?>
+        ?>
+    </div>     
 </form>
 
 <?php

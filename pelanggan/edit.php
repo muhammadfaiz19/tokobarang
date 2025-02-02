@@ -37,7 +37,7 @@ getHeader($theme);
     ?>
         <div class="header icon-and-heading">
         <i class="zmdi zmdi-view-dashboard zmdi-hc-4x custom-icon"></i>
-        <h2><strong>pelanggan</strong> <small>Edit Data</small> </h2>
+        <h2><strong>Pelanggan</strong> <small>Edit Data</small> </h2>
         </div>
         <hr style="margin-bottom:-2px;"/>
         <form name="formEdit" method="POST" action="">
@@ -45,25 +45,25 @@ getHeader($theme);
             <?php foreach ($rows as $row): ?>
             
                     <div class="form-group">
-                        <label>id:</label>
+                        <label>ID:</label>
                         <input type="text" class="form-control" id="id" name="id" 
                             value="<?php echo $row['id']; ?>" readonly/>
                     </div>
                 
                     <div class="form-group">
-                        <label>kode_pelanggan:</label>
+                        <label>Kode Pelanggan:</label>
                         <input type="text" class="form-control" id="kode_pelanggan" name="kode_pelanggan" 
                             value="<?php echo $row['kode_pelanggan']; ?>" />
                     </div>
                 
                     <div class="form-group">
-                        <label>nama:</label>
+                        <label>Nama:</label>
                         <input type="text" class="form-control" id="nama" name="nama" 
                             value="<?php echo $row['nama']; ?>" />
                     </div>
                 
                 <div class="form-group">
-                    <label>Jk:</label>
+                    <label>Jenis Kelamin:</label>
                     <select id="jk" name="jk" style="width:150px" 
                         class="form-control show-tick" required>
                     <option value="<?php echo $row['jk']; ?>">
@@ -73,13 +73,13 @@ getHeader($theme);
                 </div>
             
                     <div class="form-group">
-                        <label>email:</label>
+                        <label>Email:</label>
                         <input type="text" class="form-control" id="email" name="email" 
                             value="<?php echo $row['email']; ?>" />
                     </div>
                 
                     <div class="form-group">
-                        <label>telepon:</label>
+                        <label>No.Telepon:</label>
                         <input type="text" class="form-control" id="telepon" name="telepon" 
                             value="<?php echo $row['telepon']; ?>" />
                     </div>

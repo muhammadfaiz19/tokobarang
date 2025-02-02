@@ -36,7 +36,7 @@ getHeader($theme);
     ?>
         <div class="header icon-and-heading">
         <i class="zmdi zmdi-view-dashboard zmdi-hc-4x custom-icon"></i>
-        <h2><strong>transaksi</strong> <small>Edit Data</small> </h2>
+        <h2><strong>Transaksi</strong> <small>Edit Data</small> </h2>
         </div>
         <hr style="margin-bottom:-2px;"/>
         <form name="formEdit" method="POST" action="">
@@ -44,25 +44,25 @@ getHeader($theme);
             <?php foreach ($rows as $row): ?>
             
                     <div class="form-group">
-                        <label>id:</label>
+                        <label>ID:</label>
                         <input type="text" class="form-control" id="id" name="id" 
                             value="<?php echo $row['id']; ?>" readonly/>
                     </div>
                 
                     <div class="form-group">
-                        <label>kode_transaksi:</label>
+                        <label>Kode Transaksi:</label>
                         <input type="text" class="form-control" id="kode_transaksi" name="kode_transaksi" 
                             value="<?php echo $row['kode_transaksi']; ?>" />
                     </div>
                 
                     <div class="form-group">
-                        <label>kode_pelanggan:</label>
+                        <label>Kode Pelanggan:</label>
                         <input type="text" class="form-control" id="kode_pelanggan" name="kode_pelanggan" 
                             value="<?php echo $row['kode_pelanggan']; ?>" />
                     </div>
                 
                     <div class="form-group">
-                        <label>tanggal_transaksi:</label>
+                        <label>Tanggal Transaksi:</label>
                         <input type="text" class="form-control" id="tanggal_transaksi" name="tanggal_transaksi" 
                             value="<?php echo $row['tanggal_transaksi']; ?>" />
                     </div>
@@ -74,7 +74,7 @@ getHeader($theme);
                     </div>
                 
                     <div class="form-group">
-                        <label>total_harga:</label>
+                        <label>Total Harga:</label>
                         <input type="text" class="form-control" id="total_harga" name="total_harga" 
                             value="<?php echo $row['total_harga']; ?>" />
                     </div>

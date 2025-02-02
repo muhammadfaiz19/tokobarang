@@ -15,13 +15,16 @@ class DetailtransaksiModel
     {
         $sql = "INSERT INTO detailtransaksi (transaksi_id, kode_barang) VALUES (:transaksi_id, :kode_barang)";
         $params = array(
-          ":transaksi_id" => $transaksi_id,
-          ":kode_barang" => $kode_barang
+            ":transaksi_id" => $transaksi_id,
+            ":kode_barang" => $kode_barang
         );
 
         $result = $this->db->executeQuery($sql, $params);
         
         if ($result) {
+            // Update total harga transaksi setelah insert
+            $this->updateTotalHarga($transaksi_id);
+
             $response = array(
                 "success" => true,
                 "message" => "Insert successful"
@@ -35,6 +38,7 @@ class DetailtransaksiModel
     
         return json_encode($response);
     }
+
 
     public function getDetailtransaksi($id)
     {
@@ -76,7 +80,7 @@ class DetailtransaksiModel
     }
     
 
-    public function deleteDetailtransaksi($id)
+    public function deleteDetailtransaksi($id, $transaksi_id)
     {
         $sql = "DELETE FROM detailtransaksi WHERE id = :id";
         $params = array(":id" => $id);
@@ -84,6 +88,9 @@ class DetailtransaksiModel
         $result = $this->db->executeQuery($sql, $params);
         
         if ($result) {
+            // Update total harga transaksi setelah delete
+            $this->updateTotalHarga($transaksi_id);
+
             $response = array(
                 "success" => true,
                 "message" => "Delete successful"
@@ -134,5 +141,40 @@ class DetailtransaksiModel
         $count = $this->db->executeQuery($sql, $params)->fetchColumn();
         return $count > 0; // return true if transaksi_id exists, otherwise false
     }
+
+    public function updateTotalHarga($transaksi_id)
+    {
+        $sql = "SELECT SUM(b.harga) as total_harga 
+                FROM detailtransaksi dt
+                JOIN barang b ON dt.kode_barang = b.kode_barang
+                WHERE dt.transaksi_id = :transaksi_id";
+        
+        $params = array(":transaksi_id" => $transaksi_id);
+        $result = $this->db->executeQuery($sql, $params)->fetch(PDO::FETCH_ASSOC);
+        $total_harga = $result['total_harga'] ?? 0;
+
+        // Update nilai total harga di tabel transaksi
+        $updateSql = "UPDATE transaksi SET total_harga = :total_harga WHERE id = :transaksi_id";
+        $updateParams = array(
+            ":total_harga" => $total_harga,
+            ":transaksi_id" => $transaksi_id
+        );
+        $this->db->executeQuery($updateSql, $updateParams);
+    }
+
+    public function getTotalHarga($transaksi_id)
+{
+    $sql = "SELECT SUM(b.harga) as total_harga 
+            FROM detailtransaksi dt
+            JOIN barang b ON dt.kode_barang = b.kode_barang
+            WHERE dt.transaksi_id = :transaksi_id";
+    
+    $params = array(":transaksi_id" => $transaksi_id);
+    $result = $this->db->executeQuery($sql, $params)->fetch(PDO::FETCH_ASSOC);
+    
+    return $result['total_harga'] ?? 0;
+}
+
+    
 }
 ?>
