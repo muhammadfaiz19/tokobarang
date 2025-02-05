@@ -7,7 +7,10 @@ Tokobarang adalah aplikasi berbasis web yang dibangun dengan PHP untuk mengelola
 - **CRUD Barang** (Tambah, Edit, Hapus, Lihat)
   - Cari berdasarkan Kode atau Nama Barang
   - Filter berdasarkan Kategori
+  - Upload foto barang
 - **CRUD Pelanggan** (Tambah, Edit, Hapus, Lihat)
+  - Cari berdasarkan Kode atau Nama Pelanggan
+  - Filter berdasarkan Jenis Kelamin
 - **CRUD Transaksi** (Tambah, Edit, Hapus, Lihat)
   - Cari berdasarkan Kode atau Nama Pelanggan
   - Filter berdasarkan Periode Bulan

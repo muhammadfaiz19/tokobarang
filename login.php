@@ -37,12 +37,12 @@ getHeaderLogin($theme);
                             <label for="email">Email:</label>
                             <input type="text" class="form-control" id="email" name="email" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                             <label for="sandi">Password:</label>
                             <input type="password" class="form-control" id="sandi" name="sandi" required>
                         </div>
                         
-                            <button type="submit" class="btn btn-primary">Log In</button>
+                            <button type="submit" class="btn btn-primary mt-2">Log In</button>
                         </form>
                         
                         <div style="margin-top:20px">Daftarkan diri Anda <a href="register.php">disini</a></div>

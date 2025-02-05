@@ -22,7 +22,7 @@ getHeader($theme);
     <i class="zmdi zmdi-view-dashboard zmdi-hc-4x custom-icon"></i>
     <h2><strong>Barang</strong> <small>List All Data</small> </h2>
 </div>
-<hr style="margin-bottom:-2px;"/>
+<hr/>
 <a style="margin:10px 0px;" class="btn btn-large btn-info" href="add.php"><i class="fa fa-plus"></i> Create New Data</a>
 
 <div class="search-filter d-flex justify-content-between" style="width: 100%; gap: 15px;">

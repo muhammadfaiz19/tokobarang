@@ -6,8 +6,6 @@
                         </div>
                         <div class="card radius-10 border shadow-none">
                             <div class="card-body" style="text-align: center;">
-                            Muhammad Hidayat
-                            Nurkholifah
                             Muhammad Faiz
                             <br>
                             Copyright © 2025 All Rights Reserved

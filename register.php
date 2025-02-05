@@ -39,24 +39,24 @@ getHeaderLogin($theme);
                                 }
                             ?>		
                         <form id="login-form" method="POST">
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                             <label for="nrp">Nama:</label>
                             <input type="text" class="form-control" id="nama" name="nama" required>
                         </div>
-						<div class="form-group">
+						<div class="form-group mt-2">
                             <label for="email">Email:</label>
                             <input type="text" class="form-control" id="email" name="email" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                             <label for="sandi">Password:</label>
                             <input type="password" class="form-control" id="sandi" name="sandi" required>
                         </div>
-						<div class="form-group">
+						<div class="form-group mt-2">
                             <label for="confirmpassword">Confirm Password:</label>
                             <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" required>
                         </div>
                         
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="submit" class="btn btn-primary mt-2">Register</button>
                         </form>
 					</div>
 					<div class="col col-md-9">
