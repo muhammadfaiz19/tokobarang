@@ -9,7 +9,7 @@ getHeader($theme);
 
 <div class="header icon-and-heading">
 <i class="zmdi zmdi-view-dashboard zmdi-hc-4x custom-icon"></i>
-<h2><strong>pelanggan</strong> <small>List All Data</small> </h2>
+<h2><strong>Pelanggan</strong> <small>List All Data</small> </h2>
 </div>
 <hr style="margin-bottom:-2px;"/>
 <a style="margin:10px 0px;" class="btn btn-large btn-info" href="add.php"><i class="fa fa-plus"></i> Create New Data</a>
@@ -17,11 +17,11 @@ getHeader($theme);
     <thead>
         <tr>
             <th>id</th>
-<th>kode_pelanggan</th>
-<th>nama</th>
-<th>jk</th>
-<th>email</th>
-<th>telepon</th>
+<th>Kode Pelanggan</th>
+<th>Nama</th>
+<th>Jenis Kelamin</th>
+<th>Email</th>
+<th>No.Telepon</th>
             <th width="140">Action</th>
         </tr>
     </thead>

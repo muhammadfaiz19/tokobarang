@@ -63,4 +63,9 @@ class BarangController
     { 
         return $this->model->kurangiStokBarang($kode_barang, $jumlah);
     }
+
+    public function updatefotoBarang($id, $foto){
+        return $this->model->updatefotoBarang($id, $foto);
+    }
+    
 }

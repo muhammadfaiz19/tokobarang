@@ -138,8 +138,33 @@ class BarangModel
     
         return $stmt->execute();
     }
-    
 
+    public function updatefotoBarang($id, $foto)
+    {
+        $sql = "UPDATE barang SET foto = :foto WHERE id = :id";
+        $params = array(
+          ":foto" => $foto,
+          ":id" => $id
+        );
     
+        // Execute the query
+        $result = $this->db->executeQuery($sql, $params);
     
+        // Check if the update was successful
+        if ($result) {
+            $response = array(
+                "success" => true,
+                "message" => "Update successful"
+            );
+        } else {
+            $response = array(
+                "success" => false,
+                "message" => "Update failed"
+            );
+        }
+    
+        // Return the response as JSON
+        return json_encode($response);
+    }
+
 }

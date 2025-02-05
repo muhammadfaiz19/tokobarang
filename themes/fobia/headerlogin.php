@@ -27,7 +27,7 @@
     <link href="themes/fobia/assets/css/semi-dark.css" rel="stylesheet" />
     <link href="themes/fobia/assets/css/header-colors.css" rel="stylesheet" />
 
-    <title>CRUD Application</title>
+    <title>Toko Barang</title>
     <style>
         h2 strong {
           display: block; /* Display the <strong> element as a block to separate it from the text below */

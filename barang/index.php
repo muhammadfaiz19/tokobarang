@@ -52,8 +52,8 @@ getHeader($theme);
 <hr style="margin-bottom:-2px;"/>
 
 <!-- Barang List Table -->
-<table class="table table-bordered table-striped">
-    <thead>
+<table class="table table-bordered table-striped text-center">
+    <thead class="thead-dark">
         <tr>
             <th>ID</th>
             <th>Kode Barang</th>
@@ -61,28 +61,41 @@ getHeader($theme);
             <th>Kategori</th>
             <th>Harga</th>
             <th>Stok</th>
-            <th width="140">Action</th>
+            <th>Foto</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
-    <?php foreach($rows as $row){ ?>
-    <tr>
-        <td><?php echo $row["id"]; ?></td>
-        <td><?php echo $row["kode_barang"]; ?></td>
-        <td><?php echo $row["nama_barang"]; ?></td>
-        <td><?php echo $row["kategori"]; ?></td>
-        <td><?php echo $row["harga"]; ?></td>
-        <td><?php echo $row["stok"]; ?></td>
-        <td class="text-center" width="200">
-            <a class="btn btn-info btn-sm" href="edit.php?id=<?php echo $row['id']; ?>">
-                <i class="fa fa-pencil"></i>
-            </a>
-            <a class="btn btn-danger btn-sm" href="delete.php?id=<?php echo $row['id']; ?>">
-                <i class="fa fa-trash"></i>
-            </a>
-        </td>
-    </tr>
-    <?php } ?>
+        <?php foreach ($rows as $row) { ?>
+        <tr>
+            <td><?php echo $row["id"]; ?></td>
+            <td><?php echo $row["kode_barang"]; ?></td>
+            <td><?php echo $row["nama_barang"]; ?></td>
+            <td><?php echo $row["kategori"]; ?></td>
+            <td><?php echo number_format($row["harga"], 0, ',', '.'); ?></td>
+            <td><?php echo $row["stok"]; ?></td>
+            <td>
+                <?php
+                    if (!empty($row["foto"])) {
+                        echo '<img src="../images/' . htmlspecialchars($row["foto"]) . '" width="110" height="90" class="img-thumbnail">';
+                    } else {
+                        echo '<span class="text-muted">No Image</span>';
+                    }
+                ?>
+            </td>
+            <td>
+                <a class="btn btn-info btn-sm" href="edit.php?id=<?php echo $row['id']; ?>">
+                    <i class="fa fa-pencil"></i>
+                </a>
+                <a class="btn btn-success btn-sm" href="upload.php?id=<?php echo $row["id"]; ?>">
+                    <i class="fa fa-camera"></i>
+                </a>
+                <a class="btn btn-danger btn-sm" href="delete.php?id=<?php echo $row['id']; ?>">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        <?php } ?>
     </tbody>
 </table>
 

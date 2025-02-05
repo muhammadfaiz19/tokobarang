@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Jakarta'); // Mengatur timezone ke Jakarta
 // Mengimpor autoload mPDF jika menggunakan Composer
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -34,14 +35,16 @@ $html = '
         th { background-color: #f2f2f2; }
         .header { text-align: center; font-size: 18px; margin-bottom: 10px; }
         .footer { text-align: right; font-size: 12px; margin-top: 20px; }
+        .logo { width: 70px; }
     </style>
 </head>
 <body>
 
 <div class="header">
+    <img src="../themes/fobia/assets/images/tokobarang2.png" class="logo" alt="Logo">
     <h2><strong>Laporan Penjualan</strong></h2>
     <p>Periode: ' . ($periode ? date("F Y", mktime(0, 0, 0, $bulan, 1)) : 'Semua Periode') . '</p>
-    <p>Cari berdasarkan: ' . ($search ? "Kode Transaksi / Nama Pelanggan: " . htmlspecialchars($search) : 'Semua Data') . '</p>
+    <p>Search: ' . ($search ? "Kode Transaksi / Nama Pelanggan: " . htmlspecialchars($search) : 'Semua Data') . '</p>
 </div>
 
 <table>
@@ -80,6 +83,7 @@ $html .= '
 </table>
 
 <div class="footer">
+
     <p>Generated on: ' . date("d-m-Y H:i:s") . '</p>
 </div>
 

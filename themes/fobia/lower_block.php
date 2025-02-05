@@ -6,7 +6,11 @@
                         </div>
                         <div class="card radius-10 border shadow-none">
                             <div class="card-body" style="text-align: center;">
-                            Copyright © 2023 Freddy Wicaksono,  M.Kom. All right reserved.
+                            Muhammad Hidayat
+                            Nurkholifah
+                            Muhammad Faiz
+                            <br>
+                            Copyright © 2025 All Rights Reserved
                             </div>
                         </div>
                     </div>
