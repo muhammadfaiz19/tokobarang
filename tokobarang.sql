@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 05, 2025 at 03:24 PM
+-- Generation Time: Feb 05, 2025 at 04:57 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -42,21 +42,21 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `kode_barang`, `nama_barang`, `kategori`, `harga`, `stok`, `foto`) VALUES
-(1, 'B001', 'Laptop ASUS', 'Elektronik', '8000000.00', 12, '679f9a97deeac.jpeg'),
+(1, 'B001', 'Laptop ASUS', 'Elektronik', '8000000.00', 10, '679f9a97deeac.jpeg'),
 (2, 'B002', 'Kulkas Samsung', 'Elektronik', '4500000.00', 3, '679f979213898.jpeg'),
-(3, 'B003', 'Sepatu Adidas Samba', 'Fashion', '1200000.00', 17, '679f9b0373c83.jpeg'),
+(3, 'B003', 'Sepatu Adidas Samba', 'Fashion', '1200000.00', 15, '679f9b0373c83.jpeg'),
 (4, 'B004', 'Iphone 15 Pro Max', 'Elektronik', '15000000.00', 15, '679f9d45eeb48.jpeg'),
 (5, 'B005', 'Buku Novel Bumi Manusia', 'Buku', '150000.00', 49, '679f9f0574901.jpg'),
 (6, 'B006', 'Samsung Galaxy S24 Ultra', 'Elektronik', '14000000.00', 30, '679f9fe809a62.jpg'),
 (7, 'B007', 'Meja Kantor', 'Perabotan', '200000.00', 24, '679f9f6e265d5.png'),
-(8, 'B008', 'Kamera Canon', 'Elektronik', '5000000.00', 8, '679f9f434af99.jpeg'),
+(8, 'B008', 'Kamera Canon', 'Elektronik', '5000000.00', 7, '679f9f434af99.jpeg'),
 (9, 'B009', 'Smartwatch Xiaomi', 'Aksesoris', '2500000.00', 12, '679fa098e7fac.jpeg'),
 (10, 'B010', 'Phone Asus ROG 5', 'Elektronik', '7000000.00', 38, '679fa15facf1b.jpeg'),
-(11, 'B011', 'Tas Ransel Nike', 'Fashion', '600000.00', 35, '679fa1d8502c0.jpeg'),
+(11, 'B011', 'Tas Ransel Nike', 'Fashion', '600000.00', 34, '679fa1d8502c0.jpeg'),
 (12, 'B012', 'Lampu Meja IKEA', 'Perabotan', '150000.00', 21, '679fa235f33ca.jpeg'),
 (13, 'B013', 'Tenda Camping', 'Outdoor', '850000.00', 17, '67a338c022bf1.jpg'),
 (14, 'B014', 'Cangkir Keramik', 'Perabotan', '50000.00', 60, '679fa2c97c774.jpg'),
-(15, 'B015', 'Kursi Gaming', 'Perabotan', '550000.00', 9, '679fa309e55ac.jpg');
+(15, 'B015', 'Kursi Gaming', 'Perabotan', '550000.00', 8, '679fa309e55ac.jpg');
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,9 @@ CREATE TABLE `detailtransaksi` (
 --
 
 INSERT INTO `detailtransaksi` (`id`, `transaksi_id`, `kode_barang`, `jumlah`) VALUES
-(20, 13, 'B001', NULL);
+(28, 19, 'B001', NULL),
+(29, 19, 'B003', NULL),
+(30, 20, 'B015', NULL);
 
 -- --------------------------------------------------------
 
@@ -101,8 +103,7 @@ INSERT INTO `pelanggan` (`id`, `kode_pelanggan`, `nama`, `jk`, `email`, `telepon
 (1, '220511088', 'Muhammad Hidayat', 'L', 'muhammadhidayat6704@gmail.com', '085967029702'),
 (2, '220511139', 'Muhammad Faiz', 'L', 'mfaiz19@gmail.com', '081367892657'),
 (3, '220511111', 'Nurkholifah', 'P', 'nur@gmail.com', '086725346783'),
-(5, '220511144', 'Muhammad Daffa Raditha Pratama', 'L', 'mdaffa@gmail.com', '083273462343'),
-(6, '20511099', 'Cacaa', 'P', 'caca@gmail.com', '08234652323');
+(5, '220511144', 'Muhammad Daffa Raditha Pratama', 'L', 'mdaffa@gmail.com', '08327346233234');
 
 -- --------------------------------------------------------
 
@@ -124,7 +125,13 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `kode_transaksi`, `kode_pelanggan`, `tanggal_transaksi`, `dibeli`, `total_harga`) VALUES
-(13, 'fc924d9', '20511099', '2025-02-05', 0, '8000000.00');
+(19, '17dcf82', '220511088', '2025-02-05', 2, '9200000.00'),
+(20, '6627d12', '220511139', '2025-02-09', 2, '550000.00'),
+(21, '6b89fec', '220511088', '2025-02-05', 0, '0.00'),
+(22, 'be33151', '220511111', '2025-02-05', 0, '0.00'),
+(23, '9f6fb0a', '220511088', '2025-02-03', 0, '0.00'),
+(24, '9f6fb0a', '220511088', '2025-02-01', 0, '0.00'),
+(26, 'f2ace79', '220511144', '2025-02-15', 0, '0.00');
 
 -- --------------------------------------------------------
 
@@ -164,8 +171,8 @@ ALTER TABLE `barang`
 --
 ALTER TABLE `detailtransaksi`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `transaksi_id` (`transaksi_id`),
-  ADD KEY `fk_detailtransaksi_barang` (`kode_barang`);
+  ADD KEY `fk_detailtransaksi_barang` (`kode_barang`),
+  ADD KEY `transaksi_id` (`transaksi_id`) USING BTREE;
 
 --
 -- Indexes for table `pelanggan`
@@ -195,13 +202,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `detailtransaksi`
 --
 ALTER TABLE `detailtransaksi`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `pelanggan`
@@ -213,7 +220,7 @@ ALTER TABLE `pelanggan`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `users`
