@@ -39,11 +39,23 @@ class PelangganController
         return $this->model->deletePelanggan($id);
     }
 
-    public function getPelangganList()
+    public function getPelangganList($search = '', $jk = '')
     {
-        return $this->model->getPelangganList();
+    return $this->model->getPelangganList($search, $jk);
     }
-    
+
+    public function getJenisKelamin()
+    {
+        return [
+            ['jk' => 'L'],
+            ['jk' => 'P']
+        ];
+    }
+
+    public function getTotalPelanggan()
+    {
+        return $this->model->getTotalPelanggan();
+    }
     public function getDataCombo()
     {
         return $this->model->getDataCombo();

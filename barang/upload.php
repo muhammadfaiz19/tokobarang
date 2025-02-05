@@ -47,6 +47,8 @@ getHeader($theme);
             </div>
         </div>
         <button class="save btn btn-large btn-info" type="submit">Upload</button>
+        <a href="../barang/index.php" class="btn btn-large btn-default">Cancel</a>
+
         
         <?php endforeach; ?>
     </form>
@@ -88,6 +90,7 @@ getHeader($theme);
                 if (data.success) {
                     uploadmessage.textContent = 'Image uploaded successfully!';
                     uploadmessage.style.color = 'green';
+                    window.location.href = '../barang/index.php';
                 } else {
                     uploadmessage.textContent = 'Upload failed: ' + data.message;
                     uploadmessage.style.color = 'red';

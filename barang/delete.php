@@ -61,7 +61,7 @@ getHeader($theme);
             
         </dl>
         <button class="btn btn-large btn-danger" type="submit">Delete</button>
-        <a href="#index" class="btn btn-large btn-default">Cancel</a>
+        <a href="../barang/index.php" class="btn btn-large btn-default">Cancel</a>
         <?php endforeach; ?>
     </form>
 <?php

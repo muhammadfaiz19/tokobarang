@@ -104,11 +104,33 @@ class PelangganModel
         return json_encode($response);
     }
 
-    public function getPelangganList()
+    public function getPelangganList($search = '', $jk = '')
     {
-        $sql = 'SELECT * FROM pelanggan limit 100';
-        return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    $sql = "SELECT * FROM pelanggan WHERE 1=1";
+    $params = [];
+
+    if (!empty($search)) {
+        $sql .= " AND (nama LIKE :search OR kode_pelanggan LIKE :search)";
+        $params[':search'] = "%$search%";
     }
+
+    if (!empty($jk)) {
+        $sql .= " AND jk = :jk";
+        $params[':jk'] = $jk;
+    }
+
+    $sql .= " LIMIT 100";
+
+    return $this->db->executeQuery($sql, $params)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getTotalPelanggan()
+    {
+        $sql = "SELECT COUNT(*) as total FROM pelanggan";
+
+        return $this->db->executeQuery($sql)->fetch(PDO::FETCH_ASSOC)['total'];
+    }
+
 
     public function getDataCombo()
     {

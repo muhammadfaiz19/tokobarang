@@ -67,7 +67,7 @@ getHeader($theme);
                             value="<?php echo $row['tanggal_transaksi']; ?>" />
                     </div>
                 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Jumlah:</label>
                         <input type="text" class="form-control" id="dibeli" name="dibeli" 
                             value="<?php echo $row['dibeli']; ?>" />
@@ -77,12 +77,12 @@ getHeader($theme);
                         <label>Total Harga:</label>
                         <input type="text" class="form-control" id="total_harga" name="total_harga" 
                             value="<?php echo $row['total_harga']; ?>" />
-                    </div>
+                    </div> -->
                 
             
             <?php endforeach; ?>
             <button class="save btn btn-large btn-info" type="submit">Save</button>
-            <a href="#index" class="btn btn-large btn-default">Cancel</a>
+            <a href="../transaksi/index.php" class="btn btn-large btn-default">Cancel</a>
         </form>
                                         
 <?php

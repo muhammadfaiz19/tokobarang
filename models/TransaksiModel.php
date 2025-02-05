@@ -90,7 +90,7 @@ class TransaksiModel
     }
 
     public function getTransaksiList($search = '', $bulan = '', $tahun = '')
-{
+    {
     $sql = 'SELECT T.id, T.kode_transaksi, T.kode_pelanggan, T.tanggal_transaksi, T.dibeli, P.id AS idpelanggan, P.nama 
             FROM transaksi T 
             LEFT JOIN pelanggan P ON T.kode_pelanggan = P.kode_pelanggan';
@@ -122,7 +122,25 @@ class TransaksiModel
     }
 
     return $this->db->executeQuery($sql, $params)->fetchAll(PDO::FETCH_ASSOC);
-}
+    }
+
+    public function getTotalTransaksi()
+    {
+        $sql = "SELECT COUNT(*) as total FROM transaksi";
+
+        return $this->db->executeQuery($sql)->fetch(PDO::FETCH_ASSOC)['total'];
+    }
+
+    public function getTransaksiLast30Days()
+    {
+        $sql = "SELECT DATE(tanggal_transaksi) AS hari, COUNT(*) AS total_transaksi
+                FROM transaksi
+                WHERE tanggal_transaksi >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+                GROUP BY hari
+                ORDER BY hari ASC";
+
+        return $this->db->executeQuery($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
     public function getDataCombo()

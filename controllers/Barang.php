@@ -64,6 +64,11 @@ class BarangController
         return $this->model->kurangiStokBarang($kode_barang, $jumlah);
     }
 
+    public function getTotalBarang()
+    {
+        return $this->model->getTotalBarang();
+    }
+
     public function updatefotoBarang($id, $foto){
         return $this->model->updatefotoBarang($id, $foto);
     }

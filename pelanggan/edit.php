@@ -87,8 +87,8 @@ getHeader($theme);
             
             <?php endforeach; ?>
             <button class="save btn btn-large btn-info" type="submit">Save</button>
-            <a href="#index" class="btn btn-large btn-default">Cancel</a>
-        </form>
+            <a href="../pelanggan/index.php" class="btn btn-large btn-default">Cancel</a>
+            </form>
                                         
 <?php
 getFooter($theme,"<script src='../lib/forms.js'></script>");

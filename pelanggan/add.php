@@ -65,7 +65,7 @@ if($msg===true){
                 </div>
             
             <button class="save btn btn-large btn-info" type="submit">Save</button>
-            <a href="#index" class="btn btn-large btn-default">Cancel</a>
+            <a href="../pelanggan/index.php" class="btn btn-large btn-default">Cancel</a>
         </form>
 
 <?php

@@ -114,10 +114,11 @@ if($transaksi['dibeli'] == 0){
 <form name="formStatus" method="POST" action="">
     <input type="hidden" class="form-control" name="submitted" value="1"/>
     <input type="hidden" class="form-control" name="id" value="<?php echo $id; ?>"/>
-    <div class="d-flex justify-content-end mt-3">
+    <div class="d-flex justify-content-end mt-3 gap-2">
+        <a href="../transaksi/index.php" class="btn btn-large btn-default">Cancel</a>
         <?php
         if($transaksi['dibeli'] == 0){
-            echo '<button class="save btn btn-large btn-success" type="submit"><i class="fa fa-handshake"></i> Checkout</button>';
+            echo '<button class="save btn btn-large btn-success" type="submit"><i class="fa fa-handshake-o"></i>Checkout</button>';
         }
         ?>
     </div>     

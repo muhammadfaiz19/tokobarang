@@ -139,6 +139,14 @@ class BarangModel
         return $stmt->execute();
     }
 
+    public function getTotalBarang()
+    {
+        $sql = "SELECT COUNT(*) as total FROM barang";
+
+        return $this->db->executeQuery($sql)->fetch(PDO::FETCH_ASSOC)['total'];
+    }
+
+
     public function updatefotoBarang($id, $foto)
     {
         $sql = "UPDATE barang SET foto = :foto WHERE id = :id";

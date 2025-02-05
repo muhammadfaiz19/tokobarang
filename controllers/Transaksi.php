@@ -40,14 +40,22 @@ class TransaksiController
     {
         return $this->model->getTransaksiList($search, $bulan, $tahun);
     }
+    public function getTotalTransaksi()
+    {
+        return $this->model->getTotalTransaksi();
+    }
 
     public function getDataCombo()
     {
         return $this->model->getDataCombo();
     }
 
+    public function getTransaksiLast30Days()
+    {
+        return $this->model->getTransaksiLast30Days();
+    }
+
   
 }
 
-// Perbaikan: Menambahkan penutupan class TransaksiController
 ?>
