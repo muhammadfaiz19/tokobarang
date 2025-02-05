@@ -19,7 +19,7 @@ getHeader($theme);
     <h2><strong>Pelanggan</strong> <small>List All Data</small></h2>
 </div>
 <hr/>
-
+<a style="margin:10px 0px;" class="btn btn-large btn-info" href="add.php"><i class="fa fa-plus"></i> Create New Data</a>
 <div class="search-filter d-flex justify-content-between" style="width: 100%; gap: 15px;">
     <!-- Search Form -->
     <form method="get" action="" class="d-flex gap-2" style="flex-grow: 3;">
